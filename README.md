@@ -72,7 +72,7 @@ docker start flexget
 * [Alpine](https://hub.docker.com/_/alpine/)
 * [FlexGet](http://flexget.com/)
 
-## Issue trackign
+## Issue tracking
 
 * [BitBucket](https://bitbucket.org/jkoo/docker-flexget/issues?status=new&status=open)
 
