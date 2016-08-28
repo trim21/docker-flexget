@@ -7,7 +7,7 @@ This is a small container of FlexGet service on top of a tiny Linux distrubition
 * Detail configuration document can be found in [official web site](http://flexget.com/Configuration)
 * Here is the sample `config.yml` file to co-operate with Transmission
 
-```json
+```YAML
 templates:
   transmissionrpc:
     transmission:
@@ -35,16 +35,15 @@ schedules:
 * Prepare the configuratio file `config.yml` and put it in a dedicate directory. (i.e. `/path-to/flexget/conf`)
 * Also please make sure the following properties are correctly set in Transmission configuraiton file `settings.json` , otherwise there will be a Forbidden issue.
 
-```
-...
-  "rpc-authentication-required": false,
-  "rpc-bind-address": "0.0.0.0",
-  "rpc-enabled": true,
-  "rpc-whitelist": "*.*.*.*",
-  "rpc-url": "/transmission/",
-  "rpc-whitelist-enabled": true,
-...
-```
+
+> ...
+>  "rpc-authentication-required": false,
+>  "rpc-bind-address": "0.0.0.0",
+>  "rpc-enabled": true,
+>  "rpc-whitelist": "*.*.*.*",
+>  "rpc-url": "/transmission/",
+>  "rpc-whitelist-enabled": true,
+> ...
 
 ## Usage
 
@@ -57,6 +56,7 @@ docker create --name flexget \
 ```
 
 _Note_
+
 * `/path-to/flexget/conf` is a directory that contains a `config.yml` for FlexGet.
   * The directory also contains a sqlite database file and temp files that help resuming torrents in each startup
 * `/path-to/flexget/torrents` is a directory that stores downloaded torrents
@@ -68,8 +68,13 @@ docker start flexget
 ```
 
 ## Reference
+
 * [Alpine](https://hub.docker.com/_/alpine/)
 * [FlexGet](http://flexget.com/)
+
+## Issue trackign
+
+* [BitBucket](https://bitbucket.org/jkoo/docker-flexget/issues?status=new&status=open)
 
 ## License
 * [GNU General Public License v3](http://www.gnu.org/licenses/gpl-3.0.en.html)
