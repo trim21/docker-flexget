@@ -2,8 +2,8 @@ FROM alpine
 MAINTAINER Jimmy Koo <kukkiz@gmail.com
 
 RUN apk add --update \
-  python
-  py-pip
+  python \
+  py-pip \
   ca-certificates 
 
 RUN pip install paver
