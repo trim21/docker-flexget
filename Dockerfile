@@ -11,3 +11,5 @@ WORKDIR /opt/flexget
 VOLUME ["/root/.flexget"]
 
 ENTRYPOINT ["flexget"]
+
+CMD daemon start
