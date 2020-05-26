@@ -1,5 +1,8 @@
 {
-  "extends": [
-    "config:base"
-  ]
+  "extends": ["config:base"],
+  "regexManagers": {
+    "matchStrings": [
+      "ENV .*?_VERSION=(?<currentValue>.*) # (?<datasource>.*?)/(?<depName>.*?)\\s"
+    ]
+  }
 }
