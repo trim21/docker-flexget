@@ -1,8 +1,10 @@
 {
-  "extends": ["config:base"],
-  "regexManagers": {
-    "matchStrings": [
-      "ENV .*?_VERSION=(?<currentValue>.*) # (?<datasource>.*?)/(?<depName>.*?)\\s"
-    ]
-  }
+  "extends": ["@trim21"],
+  "regexManagers": [
+    {
+      "matchStrings": [
+        "ENV .*?_VERSION (?<currentValue>.*) # (?<datasource>.*?)/(?<depName>.*?)\\s"
+      ]
+    }
+  ]
 }
