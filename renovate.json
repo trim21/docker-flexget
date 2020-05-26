@@ -2,14 +2,20 @@
   "extends": [
     "@trim21"
   ],
+  "dockerfile": {
+    "automerge": false
+  },
   "automerge": true,
   "rangeStrategy": "pin",
-  "packageRules": [
+  "regexManagers": [
     {
-      "automerge": false,
-      "managers": [
-        "dockerfile"
-      ]
+      "fileMatch": [
+        "^Dockerfile$"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\sENV .*?_VERSION=(?<currentValue>.*)\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     }
   ]
 }

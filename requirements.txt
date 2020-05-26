@@ -1,3 +1,0 @@
-paver>0.0.1
-transmissionrpc>0.0.1
-flexget>0.0.1
