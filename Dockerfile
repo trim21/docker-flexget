@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 MAINTAINER Trim21 <trim21me@gmail.com>
-ENV FLEXGET_VERSION 2.21.30 # pypi flexget
+ENV FLEXGET_VERSION 2.21.30
 RUN pip install paver
 RUN pip install flexget
 RUN pip install transmissionrpc

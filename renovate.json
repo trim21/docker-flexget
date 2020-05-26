@@ -1,10 +1,15 @@
 {
-  "extends": ["@trim21"],
+  "extends": [
+    "@trim21"
+  ],
   "regexManagers": [
     {
       "matchStrings": [
-        "ENV .*?_VERSION (?<currentValue>.*) # (?<datasource>.*?)/(?<depName>.*?)\\s"
-      ]
+        "ENV .*?_VERSION (?<currentValue>.*)\n"
+      ],
+      "datasourceTemplate": "pypi",
+      "lookupNameTemplate": "flexget",
+      "depNameTemplate": "flexget"
     }
   ]
 }
