@@ -1,19 +1,14 @@
 {
   "extends": [
-    "@trim21",
-    "@trim21:app"
+    "@trim21"
   ],
   "automerge": true,
+  "rangeStrategy": "pin",
   "packageRules": [
     {
       "automerge": false,
       "managers": [
         "dockerfile"
-      ]
-    },
-    {
-      "managers": [
-        "pip_requirements"
       ]
     }
   ]
