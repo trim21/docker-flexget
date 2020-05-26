@@ -1,0 +1,3 @@
+paver
+transmissionrpc
+flexget

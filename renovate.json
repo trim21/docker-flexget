@@ -1,15 +1,13 @@
 {
   "extends": [
-    "@trim21"
+    "@trim21",
+    "@trim21:app"
   ],
-  "regexManagers": [
+  "packageRules": [
     {
-      "matchStrings": [
-        "ENV .*?_VERSION (?<currentValue>.*)\n"
-      ],
-      "datasourceTemplate": "pypi",
-      "lookupNameTemplate": "flexget",
-      "depNameTemplate": "flexget"
+      "datasources": [
+        "pypi"
+      ]
     }
   ]
 }
