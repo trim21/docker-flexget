@@ -3,10 +3,17 @@
     "@trim21",
     "@trim21:app"
   ],
+  "automerge": true,
   "packageRules": [
     {
-      "datasources": [
-        "pypi"
+      "automerge": false,
+      "managers": [
+        "dockerfile"
+      ]
+    },
+    {
+      "managers": [
+        "pip_requirements"
       ]
     }
   ]
