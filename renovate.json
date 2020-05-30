@@ -3,7 +3,7 @@
     "@trim21"
   ],
   "dockerfile": {
-    "automerge": false
+    "enabled": false
   },
   "automerge": true,
   "rangeStrategy": "pin",
