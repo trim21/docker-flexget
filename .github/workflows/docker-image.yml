@@ -24,5 +24,5 @@ jobs:
         docker tag flexget:current trim21/docker-flexget:${VERSION}
         docker push trim21/docker-flexget:${VERSION}
       env:
-        DOCKER_PASS: ${{ secret.DOCKER_PASS }}
+        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
       if: ${{ github.event_name == 'push' }}
