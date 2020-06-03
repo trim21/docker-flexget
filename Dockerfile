@@ -1,6 +1,7 @@
 FROM python:3.7-alpine
 
 MAINTAINER Trim21 <trim21me@gmail.com>
+ENV TZ Asia/Shanghai
 
 # renovate: datasource=pypi depName=flexget
 ENV FLEXGET_VERSION=3.1.60
