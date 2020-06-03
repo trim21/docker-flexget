@@ -14,4 +14,4 @@ VOLUME ["/root/.flexget"]
 
 ENTRYPOINT ["flexget"]
 
-CMD daemon start
+CMD ["daemon", "start"]
