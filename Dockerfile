@@ -6,11 +6,8 @@ MAINTAINER Trim21 <trim21me@gmail.com>
 ENV FLEXGET_VERSION=3.1.60
 
 RUN pip install transmissionrpc flexget==${FLEXGET_VERSION}
-RUN mkdir /root/.flexget
 
 WORKDIR /opt/flexget
-
-VOLUME ["/root/.flexget"]
 
 ENTRYPOINT ["flexget"]
 
