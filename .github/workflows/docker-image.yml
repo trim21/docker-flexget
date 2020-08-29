@@ -19,14 +19,21 @@ jobs:
     - name: Publish Docker Image
       run: |
         VERSION=$(cat Dockerfile |grep FLEXGET_VERSION\=|cut -f 2 -d \=)
+
+        TAGS=(
+          latest
+          "$VERSION"
+          $(echo $VERSION |cut -f 1-2 -d .)
+          $(echo $VERSION |cut -f 1 -d .)
+        )
+
         docker login --username trim21 --password $DOCKER_PASS
 
-        docker tag flexget:current trim21/docker-flexget:${VERSION}
-        docker push trim21/docker-flexget:${VERSION}
-
-        docker tag flexget:current trim21/docker-flexget:latest
-        docker push trim21/docker-flexget:latest
-
+        for t in ${TAGS[*]}
+        do
+            docker tag flexget:current trim21/docker-flexget:${t}
+            docker push trim21/docker-flexget:${t}
+        done
       env:
         DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
       if: ${{ github.event_name == 'push' }}
