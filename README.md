@@ -36,14 +36,14 @@ schedules:
 * Also please make sure the following properties are correctly set in Transmission configuraiton file `settings.json` , otherwise there will be a Forbidden issue.
 
 
-> ...
->  "rpc-authentication-required": false,
->  "rpc-bind-address": "0.0.0.0",
->  "rpc-enabled": true,
->  "rpc-whitelist": "*.*.*.*",
->  "rpc-url": "/transmission/",
->  "rpc-whitelist-enabled": true,
-> ...
+> ...\
+ "rpc-authentication-required": false,\
+ "rpc-bind-address": "0.0.0.0",\
+ "rpc-enabled": true,\
+ "rpc-whitelist": "*.*.*.*",\
+ "rpc-url": "/transmission/",\
+ "rpc-whitelist-enabled": true,\
+ ...
 
 ## Usage
 
