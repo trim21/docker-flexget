@@ -69,12 +69,11 @@ docker start flexget
 
 ## Reference
 
-* [Alpine](https://hub.docker.com/_/alpine/)
 * [FlexGet](http://flexget.com/)
 
 ## Issue tracking
 
-* [BitBucket](https://bitbucket.org/jkoo/docker-flexget/issues?status=new&status=open)
+* [Trim21/docker-flexget](https://github.com/Trim21/docker-flexget)
 
 ## License
 * [GNU General Public License v3](http://www.gnu.org/licenses/gpl-3.0.en.html)
