@@ -8,6 +8,6 @@ ENTRYPOINT ["flexget"]
 CMD ["daemon", "start", "--autoreload-config"]
 
 # renovate: datasource=pypi depName=flexget
-ENV FLEXGET_VERSION=3.1.115
+ENV FLEXGET_VERSION=3.1.116
 
 RUN pip install --no-cache-dir transmissionrpc flexget==${FLEXGET_VERSION}
