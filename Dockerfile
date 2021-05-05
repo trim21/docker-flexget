@@ -11,6 +11,6 @@ CMD ["daemon", "start", "--autoreload-config"]
 ENV FLEXGET_VERSION=3.1.118
 
 # renovate: datasource=pypi depName=transmission-rpc
-ENV TRANSMISSION_VERSION=3.2.4
+ENV TRANSMISSION_VERSION=3.2.5
 
 RUN pip install --no-cache-dir transmission-rpc==${TRANSMISSION_VERSION} flexget==${FLEXGET_VERSION}
