@@ -8,7 +8,7 @@ ENTRYPOINT ["flexget"]
 CMD ["daemon", "start", "--autoreload-config"]
 
 # renovate: datasource=pypi depName=flexget
-ENV FLEXGET_VERSION=3.1.121
+ENV FLEXGET_VERSION=3.1.122
 
 # renovate: datasource=pypi depName=transmission-rpc
 ENV TRANSMISSION_VERSION=3.2.5
