@@ -18,7 +18,7 @@ jobs:
       run: docker build . --file Dockerfile --tag flexget:current
     - name: Publish Docker Image
       run: |
-        VERSION=$(cat requirements.txt |grep flexget|cut -f 2 -d \=)
+        VERSION=$(cat requirements.txt |grep flexget|cut -f 3 -d \=)
 
         TAGS=(
           latest
