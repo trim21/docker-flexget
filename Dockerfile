@@ -4,13 +4,9 @@ MAINTAINER Trim21 <trim21me@gmail.com>
 ENV TZ Asia/Shanghai
 WORKDIR /opt/flexget
 
+RUN copy requiremenets.txt /req && \
+    pip install --no-cache-dir -r /req &&\
+    rm /req
+
 ENTRYPOINT ["flexget"]
 CMD ["daemon", "start", "--autoreload-config"]
-
-# renovate: datasource=pypi depName=flexget
-ENV FLEXGET_VERSION=3.1.122
-
-# renovate: datasource=pypi depName=transmission-rpc
-ENV TRANSMISSION_VERSION=3.2.5
-
-RUN pip install --no-cache-dir transmission-rpc==${TRANSMISSION_VERSION} flexget==${FLEXGET_VERSION}
