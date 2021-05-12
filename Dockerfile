@@ -4,7 +4,7 @@ MAINTAINER Trim21 <trim21me@gmail.com>
 ENV TZ Asia/Shanghai
 WORKDIR /opt/flexget
 
-COPY requiremenets.txt /req
+COPY requirements.txt /req
 
 RUN pip install --no-cache-dir -r /req && \
     rm /req
