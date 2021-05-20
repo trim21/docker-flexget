@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-    - run: |
+      run: |
         VERSION=$(cat requirements.txt |grep flexget|cut -f 3 -d \=)
         docker build "https://github.com/Flexget/Flexget.git#${VERSION}" --tag flexget:current
 
