@@ -14,15 +14,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: echo VERSION=$(cat requirements.txt |grep flexget|cut -f 3 -d \=) > $GITHUB_ENV
+
     - name: Build the Docker image
       run: |
-        VERSION=$(cat requirements.txt |grep flexget|cut -f 3 -d \=)
         docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget:current
 
     - name: Publish Docker Image
       run: |
-        VERSION=$(cat requirements.txt |grep flexget|cut -f 3 -d \=)
-
         TAGS=(
           latest
           "$VERSION"
