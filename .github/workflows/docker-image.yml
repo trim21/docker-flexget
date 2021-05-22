@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: echo VERSION=$(cat requirements.txt |grep flexget|cut -f 3 -d \=) > $GITHUB_ENV
+    - run: echo VERSION=$(cat requirements.txt | grep flexget | cut -f 3 -d \=) > $GITHUB_ENV
 
     - name: Build the Docker image
       run: docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget:current
