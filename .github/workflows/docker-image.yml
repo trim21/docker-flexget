@@ -32,8 +32,8 @@ jobs:
 
         for t in ${TAGS[*]}
         do
-            docker tag flexget:current trim21/docker-flexget:${t}
-            docker push trim21/docker-flexget:${t}
+            docker tag flexget:current trim21/flexget:${t}
+            docker push trim21/flexget:${t}
         done
       env:
         DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
