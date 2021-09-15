@@ -18,7 +18,7 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget:current
+        docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget-base:latest
         docker build --tag trim21/flexget:current .
 
     - name: Publish Docker Image
