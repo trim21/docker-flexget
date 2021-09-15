@@ -6,7 +6,7 @@
   "pip_requirements": {
     "enabled": true,
     "fileMatch": [
-      "requirements\\.txt",
+      "^requirements\\.txt$",
       "^requirements\\..*\\.txt$"
     ]
   },
