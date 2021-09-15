@@ -4,7 +4,11 @@
     "@trim21"
   ],
   "pip_requirements": {
-    "enabled": true
+    "enabled": true,
+    "fileMatch": [
+      "requirements\\.txt",
+      "^requirements\\..*\\.txt$"
+    ]
   },
   "automerge": true,
   "rangeStrategy": "pin"
