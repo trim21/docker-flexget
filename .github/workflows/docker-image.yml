@@ -16,10 +16,11 @@ jobs:
     - uses: actions/checkout@v2
     - run: echo VERSION=$(cat requirements.txt | grep flexget | cut -f 3 -d \=) > $GITHUB_ENV
 
+    - name: Build Base Docker Image
+      run: docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget-base:latest
+
     - name: Build the Docker image
-      run: |
-        docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget-base:latest
-        docker build --tag trim21/flexget:current .
+      run: docker build --tag trim21/flexget:current .
 
     - name: Publish Docker Image
       run: |
