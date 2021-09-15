@@ -17,7 +17,9 @@ jobs:
     - run: echo VERSION=$(cat requirements.txt | grep flexget | cut -f 3 -d \=) > $GITHUB_ENV
 
     - name: Build the Docker image
-      run: docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget:current
+      run: |
+        docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget:current
+        docker build --tag trim21/flexget:current .
 
     - name: Publish Docker Image
       run: |
@@ -28,11 +30,11 @@ jobs:
           $(echo $VERSION |cut -f 1 -d .)
         )
 
-        docker login --username trim21 --password $DOCKER_PASS
+        echo $DOCKER_PASS | docker login --username trim21 --password-stdin
 
         for t in ${TAGS[*]}
         do
-            docker tag flexget:current trim21/flexget:${t}
+            docker tag trim21/flexget:current trim21/flexget:${t}
             docker push trim21/flexget:${t}
         done
       env:
