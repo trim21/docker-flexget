@@ -1,1 +1,1 @@
-trim21-flexget-plugins==0.0.1a2
+trim21-flexget-plugins==0.0.1
