@@ -1,2 +1,2 @@
 trim21-flexget-plugins==0.0.2
---upgrade --force-reinstall https://github.com/Trim21/transmission-rpc/archive/master.tar.gz
+--force-reinstall https://github.com/Trim21/transmission-rpc/archive/master.tar.gz
