@@ -31,13 +31,12 @@ jobs:
           $(echo $VERSION |cut -f 1 -d .)
         )
 
-        echo $DOCKER_PASS | docker login --username trim21 --password-stdin
+        echo $DOCKER_PASS | docker login ghcr.io --username trim21 --password-stdin
 
-        for t in ${TAGS[*]}
-        do
-            docker tag trim21/flexget:current trim21/flexget:${t}
-            docker push trim21/flexget:${t}
+        for t in ${TAGS[*]}; do
+            docker tag trim21/flexget:current ghcr.io/trim21/flexget:${t}
+            docker push ghcr.io/trim21/flexget:${t}
         done
       env:
-        DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        DOCKER_PASS: ${{ github.token }}
       if: ${{ github.event_name == 'push' }}
