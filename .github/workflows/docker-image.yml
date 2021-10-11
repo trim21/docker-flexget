@@ -23,21 +23,34 @@ jobs:
       - name: Build the Docker image
         run: docker build --tag trim21/flexget:current .
 
-      - name: Publish Docker Image
-        run: |
-          TAGS=(
-            latest
-            "$VERSION"
-            $(echo $VERSION |cut -f 1-2 -d .)
-            $(echo $VERSION |cut -f 1 -d .)
-          )
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        if: github.event_name == 'push'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
 
-          echo $DOCKER_PASS | docker login ghcr.io --username trim21 --password-stdin
-
-          for t in ${TAGS[*]}; do
-              docker tag trim21/flexget:current ghcr.io/trim21/flexget:${t}
-              docker push ghcr.io/trim21/flexget:${t}
-          done
-        env:
-          DOCKER_PASS: ${{ github.token }}
-        if: ${{ github.event_name == 'push' }}
+      - uses: actions/github-script@v5
+        if: github.event_name == 'push'
+        name: Docker Push
+        with:
+          debug: true
+          script: |
+            const ref = context.ref
+            const versions = []
+            if (ref.startsWith('refs/tags/v')){
+              const tag = ref.substring(11)
+              const [major, minor, _] = tag.split('.')
+              versions.push('latest', tag, `${major}.${minor}`, major)
+            } else if (ref.startsWith('refs/heads/')) {
+              versions.push(ref.substring(11))
+            } else {
+              console.log(ref)
+            }
+            console.log(versions)
+            for (const version of versions) {
+              const dst = `ghcr.io/${context.actor.toLowerCase()}/flexget:${version}`
+              await exec.exec('docker', ['tag', 'flexget:tmp', dst])
+              await exec.exec('docker', ['push', dst])
+            }
