@@ -1,4 +1,4 @@
-const { exec, getExecOutput } = require("@actions/exec");
+const { exec } = require("@actions/exec");
 const fs = require("fs");
 
 async function main() {
@@ -6,16 +6,17 @@ async function main() {
 
   const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
   const remote = `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`;
+  const silent = { silent: true };
 
   try {
-    await getExecOutput("docker", ["pull", baseImage]);
+    await exec("docker", ["pull", baseImage], silent);
   } catch {
-    await getExecOutput("docker", ["build", remote, "--tag", baseImage]);
-    await getExecOutput("docker", ["push", baseImage]);
+    await exec("docker", ["build", remote, "--tag", baseImage], silent);
+    await exec("docker", ["push", baseImage], silent);
   }
 
   await exec("docker", ["tag", baseImage, "flexget-base:latest"]);
-  await getExecOutput("docker", ["build", "--tag", "flexget:current", "."]);
+  await exec("docker", ["build", "--tag", "flexget:current", "."], silent);
 
   const [major, minor, _] = FLEXGET_VERSION.split(".");
   const versions = ["latest", major, `${major}.${minor}`, FLEXGET_VERSION];
@@ -25,7 +26,7 @@ async function main() {
   for (const version of versions) {
     const dst = `ghcr.io/trim21/flexget:${version}`;
     await exec("docker", ["tag", "flexget:current", dst]);
-    await getExecOutput("docker", ["push", dst]);
+    await exec("docker", ["push", dst], silent);
   }
 }
 
