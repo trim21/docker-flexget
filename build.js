@@ -9,6 +9,7 @@ async function main() {
   const silent = {
     listeners: {
       stdout: () => {},
+      stderr: () => {},
     },
   };
 
