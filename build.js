@@ -1,15 +1,16 @@
 const { exec } = require("@actions/exec");
-const github = require("@actions/github");
-
-const context = github.context;
-const ref = context.ref;
-
-const FLEXGET_VERSION = process.env.VERSION;
+const fs = require("fs");
 
 async function main() {
+  const FLEXGET_VERSION = fs
+    .readFileSync("./requirements.txt")
+    .toString()
+    .split("==")
+    .pop();
+
   const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
   try {
-    await exec("docker", ["pull", baseImage]);
+    await exec("docker", ["pull", baseImage], { silent: true });
   } catch {
     await exec(
       "docker",
@@ -21,7 +22,7 @@ async function main() {
       ],
       { silent: true }
     );
-    await exec("docker", ["push", baseImage]);
+    await exec("docker", ["push", baseImage], { silent: true });
   }
   await exec("docker", ["tag", baseImage, "flexget-base:latest"]);
 
