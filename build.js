@@ -19,7 +19,7 @@ async function main() {
   await exec("docker", ["build", "--tag", "flexget:current", "."], silent);
 
   const [major, minor, _] = FLEXGET_VERSION.split(".");
-  const versions = ["latest", major, `${major}.${minor}`, tag];
+  const versions = ["latest", major, `${major}.${minor}`, FLEXGET_VERSION];
 
   console.log(versions);
 
