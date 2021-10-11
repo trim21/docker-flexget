@@ -7,40 +7,37 @@ on:
     branches: [ master ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - run: echo VERSION=$(cat requirements.txt | grep flexget | cut -f 3 -d \=) > $GITHUB_ENV
+      - uses: actions/checkout@v2
+      - run: echo VERSION=$(cat requirements.txt | grep flexget | cut -f 3 -d \=) > $GITHUB_ENV
 
-    - run: |
-        docker pull python:3.9-alpine
-        docker tag python:3.9-alpine python:3-alpine
+      - run: |
+          docker pull python:3.9-alpine
+          docker tag python:3.9-alpine python:3-alpine
 
-    - name: Build Base Docker Image
-      run: docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget-base:latest
+      - name: Build Base Docker Image
+        run: docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget-base:latest
 
-    - name: Build the Docker image
-      run: docker build --tag trim21/flexget:current .
+      - name: Build the Docker image
+        run: docker build --tag trim21/flexget:current .
 
-    - name: Publish Docker Image
-      run: |
-        TAGS=(
-          latest
-          "$VERSION"
-          $(echo $VERSION |cut -f 1-2 -d .)
-          $(echo $VERSION |cut -f 1 -d .)
-        )
+      - name: Publish Docker Image
+        run: |
+          TAGS=(
+            latest
+            "$VERSION"
+            $(echo $VERSION |cut -f 1-2 -d .)
+            $(echo $VERSION |cut -f 1 -d .)
+          )
 
-        echo $DOCKER_PASS | docker login ghcr.io --username trim21 --password-stdin
+          echo $DOCKER_PASS | docker login ghcr.io --username trim21 --password-stdin
 
-        for t in ${TAGS[*]}; do
-            docker tag trim21/flexget:current ghcr.io/trim21/flexget:${t}
-            docker push ghcr.io/trim21/flexget:${t}
-        done
-      env:
-        DOCKER_PASS: ${{ github.token }}
-      if: ${{ github.event_name == 'push' }}
+          for t in ${TAGS[*]}; do
+              docker tag trim21/flexget:current ghcr.io/trim21/flexget:${t}
+              docker push ghcr.io/trim21/flexget:${t}
+          done
+        env:
+          DOCKER_PASS: ${{ github.token }}
+        if: ${{ github.event_name == 'push' }}
