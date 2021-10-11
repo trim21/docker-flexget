@@ -5,6 +5,7 @@ async function main() {
   const FLEXGET_VERSION = fs
     .readFileSync("./requirements.txt")
     .toString()
+    .trim()
     .split("==")
     .pop();
 
