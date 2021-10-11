@@ -27,7 +27,7 @@ async function main() {
   console.log(versions);
 
   for (const version of versions) {
-    const dst = `ghcr.io/${context.actor.toLowerCase()}/flexget:${version}`;
+    const dst = `ghcr.io/trim21/flexget:${version}`;
     await exec("docker", ["tag", "flexget:current", dst]);
     await exec("docker", ["push", dst]);
   }
