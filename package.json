@@ -1,0 +1,23 @@
+{
+  "name": "docker-flexget",
+  "version": "1.0.0",
+  "description": "personal",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trim21/docker-flexget.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Trim21/docker-flexget/issues"
+  },
+  "homepage": "https://github.com/Trim21/docker-flexget#readme",
+  "dependencies": {
+    "@actions/exec": "^1.1.0",
+    "@actions/github": "^5.0.0"
+  }
+}

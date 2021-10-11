@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -12,16 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo VERSION=$(cat requirements.txt | grep flexget | cut -f 3 -d \=) > $GITHUB_ENV
-
-      - run: |
-          docker pull python:3.9-alpine
-          docker tag python:3.9-alpine python:3-alpine
-
-      - name: Build Base Docker Image
-        run: docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget-base:latest
-
-      - name: Build the Docker image
-        run: docker build --tag trim21/flexget:current .
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -31,26 +21,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
 
-      - uses: actions/github-script@v5
-        if: github.event_name == 'push'
-        name: Docker Push
+      - uses: actions/setup-node@v2
         with:
-          debug: true
-          script: |
-            const ref = context.ref
-            const versions = []
-            if (ref.startsWith('refs/tags/v')){
-              const tag = ref.substring(11)
-              const [major, minor, _] = tag.split('.')
-              versions.push('latest', tag, `${major}.${minor}`, major)
-            } else if (ref.startsWith('refs/heads/')) {
-              versions.push(ref.substring(11))
-            } else {
-              console.log(ref)
-            }
-            console.log(versions)
-            for (const version of versions) {
-              const dst = `ghcr.io/${context.actor.toLowerCase()}/flexget:${version}`
-              await exec.exec('docker', ['tag', 'flexget:tmp', dst])
-              await exec.exec('docker', ['push', dst])
-            }
+          node-version: "14"
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+
+      - run: |
+          docker pull python:3.9-alpine
+          docker tag python:3.9-alpine python:3-alpine
+
+      - run: npm ci
+      - run: node build.js
