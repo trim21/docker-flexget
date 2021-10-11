@@ -16,6 +16,10 @@ jobs:
     - uses: actions/checkout@v2
     - run: echo VERSION=$(cat requirements.txt | grep flexget | cut -f 3 -d \=) > $GITHUB_ENV
 
+    - run: |
+        docker pull python:3.9-alpine
+        docker tag python:3.9-alphine python:3-alpine
+
     - name: Build Base Docker Image
       run: docker build "https://github.com/Flexget/Flexget.git#v${VERSION}" --tag flexget-base:latest
 
