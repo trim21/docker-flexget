@@ -6,7 +6,11 @@ async function main() {
 
   const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
   const remote = `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`;
-  const silent = { silent: true };
+  const silent = {
+    listeners: {
+      stdout: () => {},
+    },
+  };
 
   try {
     await exec("docker", ["pull", baseImage], silent);
