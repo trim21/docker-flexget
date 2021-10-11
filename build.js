@@ -8,12 +8,14 @@ async function main() {
   const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
   const remote = `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`;
   const silent = {
-    outStream: { write: () => {} },
+    silent: true,
   };
 
   try {
     await exec("docker", ["pull", baseImage], silent);
+    console.log("pulling base image");
   } catch {
+    console.log("build base image");
     await exec("docker", ["build", remote, "--tag", baseImage], silent);
     await exec("docker", ["push", baseImage], silent);
   }
@@ -27,8 +29,9 @@ async function main() {
   console.log(versions);
 
   for (const version of versions) {
+    console.log(`push tag ${version}`);
     const dst = `ghcr.io/trim21/flexget:${version}`;
-    await exec("docker", ["tag", "flexget:current", dst]);
+    await exec("docker", ["tag", "flexget:current", dst], silent);
     await exec("docker", ["push", dst], silent);
   }
 }
