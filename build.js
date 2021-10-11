@@ -8,7 +8,7 @@ async function main() {
   const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
   const remote = `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`;
   const silent = {
-    outStream: new Stream.Writable(),
+    outStream: { write: () => {} },
   };
 
   try {
