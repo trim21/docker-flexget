@@ -7,13 +7,14 @@ const ref = context.ref;
 const FLEXGET_VERSION = process.env.VERSION;
 
 async function main() {
-  const baseImage = `flexget:base-${FLEXGET_VERSION}`;
+  const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
   try {
     await exec("docker", ["pull", baseImage]);
   } catch {
     await exec(
       `docker build "https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}" --tag flexget:base-${FLEXGET_VERSION}`
     );
+    await exec("docker", ["push", baseImage]);
   }
   await exec("docker", ["tag", baseImage, "flexget-base:latest"]);
 
