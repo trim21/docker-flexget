@@ -20,7 +20,7 @@ async function main() {
     await exec("docker", ["push", baseImage], silent);
   }
 
-  await exec("docker", ["tag", baseImage, "flexget-base:latest"]);
+  await exec("docker", ["tag", baseImage, "flexget-base:latest"], silent);
   await exec("docker", ["build", "--tag", "flexget:current", "."], silent);
 
   const [major, minor, _] = FLEXGET_VERSION.split(".");
