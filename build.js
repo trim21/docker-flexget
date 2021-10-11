@@ -1,5 +1,6 @@
 const { exec } = require("@actions/exec");
 const fs = require("fs");
+const Stream = require("stream");
 
 async function main() {
   const FLEXGET_VERSION = fs.readFileSync("./requirements.txt").toString().trim().split("==").pop();
@@ -7,10 +8,7 @@ async function main() {
   const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
   const remote = `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`;
   const silent = {
-    listeners: {
-      stdout: () => {},
-      stderr: () => {},
-    },
+    outStream: new Stream(),
   };
 
   try {
