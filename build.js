@@ -25,7 +25,9 @@ async function main() {
   }
   await exec("docker", ["tag", baseImage, "flexget-base:latest"]);
 
-  await exec("docker", ["build", "--tag", "flexget:current", "."]);
+  await exec("docker", ["build", "--tag", "flexget:current", "."], {
+    silent: true,
+  });
 
   const tag = FLEXGET_VERSION;
   const [major, minor, _] = tag.split(".");
@@ -36,7 +38,7 @@ async function main() {
   for (const version of versions) {
     const dst = `ghcr.io/trim21/flexget:${version}`;
     await exec("docker", ["tag", "flexget:current", dst]);
-    await exec("docker", ["push", dst]);
+    await exec("docker", ["push", dst], { silent: true });
   }
 }
 
