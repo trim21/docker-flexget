@@ -11,12 +11,16 @@ async function main() {
   try {
     await exec("docker", ["pull", baseImage]);
   } catch {
-    await exec("docker", [
-      "build",
-      `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`,
-      "--tag",
-      baseImage,
-    ]);
+    await exec(
+      "docker",
+      [
+        "build",
+        `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`,
+        "--tag",
+        baseImage,
+      ],
+      { silent: true }
+    );
     await exec("docker", ["push", baseImage]);
   }
   await exec("docker", ["tag", baseImage, "flexget-base:latest"]);
