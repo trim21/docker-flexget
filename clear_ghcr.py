@@ -1,20 +1,15 @@
-#!/usr/bin/python3
 """
 https://github.com/airtower-luna/hello-ghcr/blob/e17ebc574711f4bcf85f8bd6b2380e226901778d/ghcr-prune.py
+
+Copyright (C) 2021 Fiona Klute
+
+MIT License
 """
 import os
 from typing import Set
 from datetime import datetime, timedelta
 
 import httpx
-
-__author__ = "Fiona Klute"
-__version__ = "0.1"
-__copyright__ = "Copyright (C) 2021 Fiona Klute"
-__license__ = "MIT"
-
-# GitHub API documentation: https://docs.github.com/en/rest/reference/packages
-github_api_accept = 'application/vnd.github.v3+json'
 
 if __name__ == "__main__":
     old = datetime.now().astimezone() - timedelta(days=10)
@@ -28,7 +23,7 @@ if __name__ == "__main__":
     s = httpx.Client(
         headers={
             'Authorization': f'token {token}',
-            'Accept': github_api_accept
+            'Accept': 'application/vnd.github.v3+json'
         }
     )
 
