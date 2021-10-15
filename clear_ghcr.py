@@ -44,6 +44,8 @@ if __name__ == "__main__":
         # prune old untagged images if requested
         if not metadata['tags']:
             versions_to_delete.add(package_version_id)
+        elif 'latest' in metadata['tags']:
+            continue
         elif created < old:
             versions_to_delete.add(package_version_id)
 
