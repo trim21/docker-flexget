@@ -52,6 +52,5 @@ if __name__ == "__main__":
     for package_version_id in versions_to_delete:
         print('try delete', package_version_id)
         r = s.delete(f'https://api.github.com/user/packages/container/{container_name}/versions/{package_version_id}')
-        print(r.url)
         r.raise_for_status()
         print(f'deleted {package_version_id}')
