@@ -1,0 +1,26 @@
+name: clear
+
+on:
+  push:
+    branches-ignore:
+      - feature/**
+      - fix/**
+      - refactor/**
+      - renovate/**
+      - deepsource-fix-*
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - run: pip install httpx dateutil
+
+      - run: python clear_ghcr.py
+        env:
+          GH_TOKEN: '${{ secrets.GH_TOKEN }}'
