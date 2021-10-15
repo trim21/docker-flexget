@@ -1,13 +1,8 @@
 name: clear
 
 on:
-  push:
-    branches-ignore:
-      - feature/**
-      - fix/**
-      - refactor/**
-      - renovate/**
-      - deepsource-fix-*
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   lint:
