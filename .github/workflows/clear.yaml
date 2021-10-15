@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: 3.8
 
-      - run: pip install httpx python-dateutil
+      - run: pip install httpx
 
       - run: python clear_ghcr.py
         env:

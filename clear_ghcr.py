@@ -7,7 +7,6 @@ from typing import Set
 from datetime import datetime, timedelta
 
 import httpx
-import dateutil.parser
 
 __author__ = "Fiona Klute"
 __version__ = "0.1"
@@ -38,14 +37,15 @@ if __name__ == "__main__":
     versions_to_delete: Set[int] = set()
     for v in versions:
         package_version_id = v["id"]
-        created = dateutil.parser.isoparse(v['created_at'])
+        created = datetime.strptime(v['created_at'], "%Y-%m-%dT%H:%M:%S%z")
         metadata = v["metadata"]["container"]
         print(f'{v["id"]}\t{v["name"]}\t{metadata["tags"]}')
-        # prune old untagged images if requested
+
+        if 'latest' in metadata['tags']:
+            continue
+
         if not metadata['tags']:
             versions_to_delete.add(package_version_id)
-        elif 'latest' in metadata['tags']:
-            continue
         elif created < old:
             versions_to_delete.add(package_version_id)
 
