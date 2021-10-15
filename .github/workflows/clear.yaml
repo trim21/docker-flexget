@@ -1,4 +1,4 @@
-name: Clear Old Image
+name: Clear old image
 
 on:
   schedule:
