@@ -1,4 +1,5 @@
 const { exec } = require("@actions/exec");
+const { context } = require("@actions/github");
 const fs = require("fs");
 
 async function main() {
@@ -16,7 +17,9 @@ async function main() {
   } catch {
     console.log("build base image");
     await exec("docker", ["build", remote, "--tag", baseImage], silent);
-    await exec("docker", ["push", baseImage], silent);
+    if (context.eventName === "push") {
+      await exec("docker", ["push", baseImage], silent);
+    }
   }
 
   await exec("docker", ["tag", baseImage, "flexget-base:latest"], silent);
@@ -26,7 +29,9 @@ async function main() {
   const versions = ["latest", major, `${major}.${minor}`, FLEXGET_VERSION];
 
   console.log(versions);
-
+  if (context.eventName !== "push") {
+    return;
+  }
   for (const version of versions) {
     console.log(`push tag ${version}`);
     const dst = `ghcr.io/trim21/flexget:${version}`;
