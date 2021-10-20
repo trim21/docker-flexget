@@ -3,7 +3,7 @@ const fs = require("fs");
 const { get, trimStart } = require("lodash");
 const { exec } = require("@actions/exec");
 const { context } = require("@actions/github");
-const toml = require("@iarna/toml");
+const toml = require("@ltd/j-toml");
 
 async function main() {
   const project = toml.parse(fs.readFileSync("./pyproject.toml").toString());
