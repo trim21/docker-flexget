@@ -1,12 +1,13 @@
+const fs = require("fs");
+
+const lodash = require("lodash");
 const { exec } = require("@actions/exec");
 const { context } = require("@actions/github");
 const toml = require("@iarna/toml");
-const fs = require("fs");
 
 async function main() {
-  const FLEXGET_VERSION = toml.parse(fs.readFileSync("./pyproject.toml").toString())["tool"]["poetry"]["dependencies"][
-    "flexget"
-  ];
+  const pyproject = toml.parse(fs.readFileSync("./pyproject.toml").toString());
+  const FLEXGET_VERSION = lodash.get(pyproject, "tool.poetry.dependencies.flexget");
 
   console.log(`build version ${FLEXGET_VERSION}`);
 
