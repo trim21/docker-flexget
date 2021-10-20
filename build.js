@@ -7,7 +7,7 @@ const toml = require("@iarna/toml");
 
 async function main() {
   const pyproject = toml.parse(fs.readFileSync("./pyproject.toml").toString());
-  const FLEXGET_VERSION = lodash.get(pyproject, "tool.poetry.dependencies.flexget");
+  const FLEXGET_VERSION = lodash.get(pyproject, "tool.poetry.dependencies.flexget").replace(/=/g, "");
 
   console.log(`build version ${FLEXGET_VERSION}`);
 
