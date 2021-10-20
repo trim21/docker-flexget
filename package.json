@@ -20,6 +20,6 @@
     "@actions/exec": "1.1.0",
     "@actions/github": "5.0.0",
     "@iarna/toml": "2.2.5",
-    "lodash": "^4.17.21"
+    "lodash": "4.17.21"
   }
 }
