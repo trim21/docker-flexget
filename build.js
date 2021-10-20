@@ -6,16 +6,14 @@ const { context } = require("@actions/github");
 const toml = require("@iarna/toml");
 
 async function main() {
-  const pyproject = toml.parse(fs.readFileSync("./pyproject.toml").toString());
-  const FLEXGET_VERSION = trimStart(get(pyproject, "tool.poetry.dependencies.flexget"), "=");
+  const project = toml.parse(fs.readFileSync("./pyproject.toml").toString());
+  const FLEXGET_VERSION = trimStart(get(project, "tool.poetry.dependencies.flexget"), "=");
 
   console.log(`build version ${FLEXGET_VERSION}`);
 
   const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
   const remote = `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`;
-  const silent = {
-    silent: true,
-  };
+  const silent = { silent: true };
 
   try {
     await exec("docker", ["pull", baseImage], silent);
