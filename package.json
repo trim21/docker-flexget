@@ -19,7 +19,7 @@
   "dependencies": {
     "@actions/exec": "1.1.0",
     "@actions/github": "5.0.0",
-    "@ltd/j-toml": "1.22.0",
+    "@ltd/j-toml": "1.23.0",
     "lodash": "4.17.21"
   }
 }
