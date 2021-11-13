@@ -25,9 +25,5 @@ jobs:
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
 
-      - run: |
-          docker pull python:3.9-alpine
-          docker tag python:3.9-alpine python:3-alpine
-
       - run: npm ci
       - run: node build.js

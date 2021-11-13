@@ -7,10 +7,10 @@ const toml = require("@ltd/j-toml");
 
 async function main() {
   const dockerFile = fs.readFileSync("./Dockerfile").toString().replace(/\r\n/g, "\n").trim();
-
   const fromLine = dockerFile.split("\n").shift();
-
   const FLEXGET_VERSION = fromLine.split(":").pop();
+
+  const silent = { silent: true };
 
   console.log(`build version ${FLEXGET_VERSION}`);
 
