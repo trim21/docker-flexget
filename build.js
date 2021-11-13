@@ -1,32 +1,19 @@
 const fs = require("fs");
 
-const { get, trimStart } = require("lodash");
+const { get, trimStart, flatMap } = require("lodash");
 const { exec } = require("@actions/exec");
 const { context } = require("@actions/github");
 const toml = require("@ltd/j-toml");
 
 async function main() {
-  const project = toml.parse(fs.readFileSync("./pyproject.toml").toString());
-  const FLEXGET_VERSION = trimStart(get(project, "tool.poetry.dependencies.flexget"), "=");
+  const dockerFile = fs.readFileSync("./Dockerfile").toString().replace(/\r\n/g, "\n").trim();
+
+  const fromLine = dockerFile.split("\n").shift();
+
+  const FLEXGET_VERSION = fromLine.split(":").pop();
 
   console.log(`build version ${FLEXGET_VERSION}`);
 
-  const baseImage = `ghcr.io/trim21/flexget:base-${FLEXGET_VERSION}`;
-  const remote = `https://github.com/Flexget/Flexget.git#v${FLEXGET_VERSION}`;
-  const silent = { silent: true };
-
-  try {
-    await exec("docker", ["pull", baseImage], silent);
-    console.log("pulling base image");
-  } catch {
-    console.log("build base image");
-    await exec("docker", ["build", remote, "--tag", baseImage], silent);
-    if (context.eventName === "push") {
-      await exec("docker", ["push", baseImage], silent);
-    }
-  }
-
-  await exec("docker", ["tag", baseImage, "flexget-base:latest"], silent);
   await exec("docker", ["build", "--tag", "flexget:current", "."], silent);
 
   const [major, minor, _] = FLEXGET_VERSION.split(".");
