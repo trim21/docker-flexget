@@ -1,9 +1,7 @@
 const fs = require("fs");
 
-const { get, trimStart, flatMap } = require("lodash");
 const { exec } = require("@actions/exec");
 const { context } = require("@actions/github");
-const toml = require("@ltd/j-toml");
 
 async function main() {
   const dockerFile = fs.readFileSync("./Dockerfile").toString().replace(/\r\n/g, "\n").trim();
