@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "@trim21"
+    "github>Trim21/renovate-config1"
   ],
   "pip_requirements": {
     "enabled": true,
