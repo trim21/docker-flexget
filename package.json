@@ -18,6 +18,6 @@
   "homepage": "https://github.com/Trim21/docker-flexget#readme",
   "dependencies": {
     "@actions/exec": "1.1.1",
-    "@actions/github": "5.1.0"
+    "@actions/github": "5.1.1"
   }
 }
