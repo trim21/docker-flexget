@@ -6,7 +6,7 @@ const { context } = require("@actions/github");
 async function main() {
   // renovate: datasource=github-tags depName=Flexget/Flexget
   const FLEXGET_VERSION = "v3.3.36";
-  const dockerFile = fs.readFileSync("./docker_file_tmpl.txt").toString().replace('${VERSION}', FLEXGET_VERSION)
+  const dockerFile = fs.readFileSync("./docker_file_tmpl.txt").toString().replace('${VERSION}', FLEXGET_VERSION.slice(1))
 
   fs.writeFileSync("Dockerfile", dockerFile)
 
