@@ -13,10 +13,10 @@
   "regexManagers": [
     {
       "fileMatch": [
-        "^build\\.js$"
+        "^build.js$"
       ],
       "matchStrings": [
-        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*VERSION = \"(?<currentValue>.*)\"\\s"
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*VERSION = \"(?<currentValue>.*)\";"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
