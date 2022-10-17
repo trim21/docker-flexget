@@ -4,7 +4,7 @@ const { exec } = require("@actions/exec");
 const { context } = require("@actions/github");
 
 function getFlexgetVersion() {
-  const req = fs.readFileSync("./requirements.txt").toString().split('\n')[0]
+  const req = fs.readFileSync("./requirements.txt").toString().trim();
 
   return req.split('==')[1]
 }
