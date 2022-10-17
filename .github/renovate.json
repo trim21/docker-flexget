@@ -10,6 +10,17 @@
       "^requirements\\..*\\.txt$"
     ]
   },
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "^build\\.js$"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\\s.*VERSION = \"(?<currentValue>.*)\"\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ],
   "automerge": true,
   "rangeStrategy": "pin"
 }

@@ -4,9 +4,11 @@ const { exec } = require("@actions/exec");
 const { context } = require("@actions/github");
 
 async function main() {
-  const dockerFile = fs.readFileSync("./Dockerfile").toString().replace(/\r\n/g, "\n").trim();
-  const fromLine = dockerFile.split("\n").shift();
-  const FLEXGET_VERSION = fromLine.split(":").pop();
+  // renovate: datasource=github-tags depName=Flexget/Flexget
+  const FLEXGET_VERSION = "v3.3.36";
+  const dockerFile = fs.readFileSync("./Dockerfile.tmpl").toString().replace('${VERSION}', FLEXGET_VERSION)
+
+  fs.writeFileSync("Dockerfile", dockerFile)
 
   const silent = { silent: true };
 
