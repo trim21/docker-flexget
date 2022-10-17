@@ -3,10 +3,15 @@ const fs = require("fs");
 const { exec } = require("@actions/exec");
 const { context } = require("@actions/github");
 
+function getFlexgetVersion() {
+  const req = fs.readFileSync("./requirements.txt").toString().split('\n')[0]
+
+  return req.split('==')[1]
+}
+
 async function main() {
-  // renovate: datasource=github-tags depName=Flexget/Flexget
-  const FLEXGET_VERSION = "v3.3.36";
-  const dockerFile = fs.readFileSync("./docker_file_tmpl.txt").toString().replace('${VERSION}', FLEXGET_VERSION.slice(1))
+  const FLEXGET_VERSION = getFlexgetVersion();
+  const dockerFile = fs.readFileSync("./docker_file_tmpl.txt").toString().replace('${VERSION}', FLEXGET_VERSION);
 
   fs.writeFileSync("Dockerfile", dockerFile)
 
