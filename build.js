@@ -10,7 +10,7 @@ async function main() {
 
   fs.writeFileSync("Dockerfile", dockerFile)
 
-  const silent = { silent: true };
+  const silent = {};
 
   console.log(`build version ${FLEXGET_VERSION}`);
 
