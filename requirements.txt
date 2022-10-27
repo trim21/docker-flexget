@@ -1,1 +1,1 @@
-flexget==3.4.1
+flexget==3.4.2
