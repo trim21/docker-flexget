@@ -6,11 +6,11 @@
   "author": "Trim21 <trim21.me@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "semver": "^7.5.0"
+    "@actions/core": "1.10.0",
+    "semver": "7.5.0"
   },
   "devDependencies": {
-    "@types/node": "^20.1.2",
-    "@types/semver": "^7.5.0"
+    "@types/node": "20.1.2",
+    "@types/semver": "7.5.0"
   }
 }
