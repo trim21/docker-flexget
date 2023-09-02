@@ -10,7 +10,7 @@
     "semver": "7.5.4"
   },
   "devDependencies": {
-    "@types/node": "20.5.7",
+    "@types/node": "20.5.8",
     "@types/semver": "7.5.1"
   }
 }
