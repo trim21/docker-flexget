@@ -10,5 +10,13 @@
       "^requirements\\..*\\.txt$"
     ]
   },
-  "rangeStrategy": "pin"
+  "rangeStrategy": "pin",
+  "packageRules": [
+    {
+      "extends": [
+          "github>Trim21/renovate-config:monthly"
+        ],
+      "excludePackageNames": ["ghcr.io/flexget/flexget"],
+    }
+  ]
 }
