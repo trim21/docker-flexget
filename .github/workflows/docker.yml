@@ -21,9 +21,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "lts/*"
-          cache: yarn
+          cache: npm
 
-      - run: yarn --prod
+      - run: npm ci
 
       - name: Docker metadata
         id: meta

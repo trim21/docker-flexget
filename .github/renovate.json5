@@ -3,6 +3,7 @@
   "extends": [
     "github>Trim21/renovate-config"
   ],
+  postUpdateOptions: ["npmDedupe"],
   "pip_requirements": {
     "enabled": true,
     "fileMatch": [
@@ -16,7 +17,7 @@
       "extends": [
           "github>Trim21/renovate-config:monthly"
         ],
-      "matchManagers": ["npm"],
+      "matchManagers": ["npm"]
     }
   ]
 }
