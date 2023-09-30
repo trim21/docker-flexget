@@ -17,7 +17,6 @@
           "github>Trim21/renovate-config:monthly"
         ],
       "matchManagers": ["npm"],
-      "excludePackageNames": ["ghcr.io/flexget/flexget"],
     }
   ]
 }
