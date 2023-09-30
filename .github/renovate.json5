@@ -15,7 +15,7 @@
   "packageRules": [
     {
       "extends": [
-          "github>Trim21/renovate-config:monthly"
+          "schedule:monthly"
         ],
       "matchManagers": ["npm"]
     }
