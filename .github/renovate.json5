@@ -17,7 +17,7 @@
       "extends": [
           "schedule:monthly"
         ],
-      "matchManagers": ["npm"]
+      "matchDatasources": ["npm"]
     }
   ]
 }
