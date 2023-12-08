@@ -1,4 +1,4 @@
-FROM ghcr.io/flexget/flexget:3.10.3
+FROM ghcr.io/flexget/flexget:3.10.4
 
 COPY requirements.plugins.txt /requirements.txt
 
